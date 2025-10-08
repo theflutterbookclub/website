@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tfbc/src/core/navigation/routes.dart';
 import 'package:tfbc/src/core/ui/ui.dart';
+import 'package:tfbc/src/core/widgets/app_button.dart';
 import 'package:tfbc/src/core/utils/responsive.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,12 +22,18 @@ class HomeScreen extends StatelessWidget {
                 fontFamily: "Ransom",
               ),
             ),
-            SizedBox(height: Spacings.xl(context)),
+            SizedBox(height: Spacings.lg(context)),
             Text(
               'We are happy to meet you',
               style: AppTextStyles.medium.copyWith(
                 fontSize: FontSizes.bodyLarge(context),
               ),
+            ),
+            SizedBox(height: Spacings.xl(context)),
+            AppButton(
+              text: "About Us",
+              width: 200,
+              onPressed: () => context.go(AppRoutes.aboutUs),
             ),
           ],
         ),

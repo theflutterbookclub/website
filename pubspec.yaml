@@ -14,6 +14,7 @@ dependencies:
 
 
   flex_color_scheme:
+  flutter_animate:
   flutter_riverpod:
 
   go_router:
