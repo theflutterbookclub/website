@@ -5,7 +5,6 @@ import '../../data/sources/hall_of_fame_data_source.dart';
 import '../../domain/repositories/hall_of_fame_repository.dart';
 import '../notifiers/hall_of_fame_notifier.dart';
 
-// Data source provider
 final hallOfFameDataSourceProvider = Provider<HallOfFameDataSource>((ref) {
   return MockHallOfFameDataSource();
 });
@@ -16,7 +15,6 @@ final hallOfFameRepositoryProvider = Provider<HallOfFameRepository>((ref) {
   return HallOfFameRepositoryImpl(dataSource);
 });
 
-// Notifier provider
 final hallOfFameNotifierProvider =
     StateNotifierProvider<HallOfFameNotifier, HallOfFameState>((ref) {
       final repository = ref.watch(hallOfFameRepositoryProvider);

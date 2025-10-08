@@ -24,7 +24,8 @@ class MockHallOfFameDataSource implements HallOfFameDataSource {
       memberId: 'member2',
       memberName: 'Michael Chen',
       achievement: 'Discussion Leader',
-      description: 'Led 20+ engaging book discussions with 95% member satisfaction.',
+      description:
+          'Led 20+ engaging book discussions with 95% member satisfaction.',
       achievedAt: '2024-02-20T14:30:00Z',
       category: 'Leadership',
       imageUrl: null,
@@ -34,7 +35,8 @@ class MockHallOfFameDataSource implements HallOfFameDataSource {
       memberId: 'member3',
       memberName: 'Emily Rodriguez',
       achievement: 'Community Builder',
-      description: 'Organized 15 successful book club events and social gatherings.',
+      description:
+          'Organized 15 successful book club events and social gatherings.',
       achievedAt: '2024-03-10T09:15:00Z',
       category: 'Community',
       imageUrl: null,
@@ -54,7 +56,8 @@ class MockHallOfFameDataSource implements HallOfFameDataSource {
       memberId: 'member5',
       memberName: 'Lisa Wang',
       achievement: 'Mentor of the Year',
-      description: 'Mentored 10 new members and helped them integrate into the club.',
+      description:
+          'Mentored 10 new members and helped them integrate into the club.',
       achievedAt: '2024-05-12T11:20:00Z',
       category: 'Mentorship',
       imageUrl: null,
@@ -64,7 +67,8 @@ class MockHallOfFameDataSource implements HallOfFameDataSource {
       memberId: 'member6',
       memberName: 'James Wilson',
       achievement: 'Digital Pioneer',
-      description: 'Created and maintained the club\'s online presence and digital resources.',
+      description:
+          'Created and maintained the club\'s online presence and digital resources.',
       achievedAt: '2024-06-18T13:10:00Z',
       category: 'Technology',
       imageUrl: null,
