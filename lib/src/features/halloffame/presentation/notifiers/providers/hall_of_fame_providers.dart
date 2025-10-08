@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:website/src/features/halloffame/presentation/notifiers/hall_of_fame_state.dart';
-import '../../data/repositories/hall_of_fame_repository_impl.dart';
-import '../../data/sources/hall_of_fame_data_source.dart';
-import '../../domain/repositories/hall_of_fame_repository.dart';
-import '../notifiers/hall_of_fame_notifier.dart';
+import '../../../data/repositories/hall_of_fame_repository_impl.dart';
+import '../../../data/sources/hall_of_fame_data_source.dart';
+import '../../../domain/repositories/hall_of_fame_repository.dart';
+import '../hall_of_fame_notifier.dart';
 
 final hallOfFameDataSourceProvider = Provider<HallOfFameDataSource>((ref) {
   return MockHallOfFameDataSource();

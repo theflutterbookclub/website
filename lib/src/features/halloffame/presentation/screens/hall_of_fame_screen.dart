@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../providers/hall_of_fame_providers.dart';
+import '../notifiers/providers/hall_of_fame_providers.dart';
 import '../widgets/achievement_card.dart';
 
 class HallOfFameScreen extends ConsumerStatefulWidget {
