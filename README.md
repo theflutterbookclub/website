@@ -299,7 +299,7 @@ This project keeps reusable widgets and app theming under `lib/src/shared/`.
 Usage example:
 
 ```dart
-import 'package:website/src/shared/theme/app_theme.dart';
+import 'package:website/src/shared/theme/themes.dart';
 import 'package:website/src/shared/widgets/widgets.dart';
 
 // In your MaterialApp
