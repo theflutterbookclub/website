@@ -53,7 +53,7 @@ class _AppButtonState extends State<AppButton> {
                 height: 56 - (_isPressed ? 4.0 : 0),
                 decoration: BoxDecoration(
                   color: widget.active ? const Color(0xFF017B85) : AppColors.outline,
-                  borderRadius: BorderRadius.circular(100),
+                  borderRadius: BorderRadius.circular(16),
                 ),
               ),
             ),
@@ -69,7 +69,7 @@ class _AppButtonState extends State<AppButton> {
                   color: widget.active
                       ? AppColors.primary
                       : AppColors.primary.withValues(alpha: 0.8),
-                  borderRadius: BorderRadius.circular(100),
+                  borderRadius: BorderRadius.circular(16),
                 ),
                 child: Center(
                   child: widget.child == null
