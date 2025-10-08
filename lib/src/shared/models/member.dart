@@ -26,5 +26,6 @@ class Member {
   }
 
   @override
-  String toString() => 'Member(id: $id, name: $name, role: $role, joinedAt: $joinedAt)';
+  String toString() =>
+      'Member(id: $id, name: $name, role: $role, joinedAt: $joinedAt)';
 }

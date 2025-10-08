@@ -32,11 +32,195 @@ Flow (how data moves)
 4. Data is returned as entities or models, mapped by the data layer into domain entities.
 5. Presentation receives entities/results, updates UI.
 
-Example: homepage flow
 
-- Contract: `lib/src/features/homepage/domain/repositories/repositories.dart` exposes `HomepageRepository` (interface).
-- Implementation: create `lib/src/features/homepage/data/repositories/homepage_repository_impl.dart` that implements `HomepageRepository` and uses `data/sources/*` for network/local access.
-- Presentation: `lib/src/features/homepage/presentation/screens/homepage_screen.dart` uses a view model (or controller) which depends on `HomepageRepository` to fetch `HomepageEntity` and render it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Complete Feature Example: Hall of Fame
+
+The Hall of Fame feature demonstrates the full architecture implementation with Riverpod state management:
+
+### Domain Layer (`lib/src/features/halloffame/domain/`)
+
+**Entities** (`entities/hall_of_fame_entry.dart`):
+```dart
+class HallOfFameEntry {
+  final String id;
+  final String memberId;
+  final String memberName;
+  final String achievement;
+  final String description;
+  final DateTime achievedAt;
+  final String category;
+  final String? imageUrl;
+  // ... constructor, copyWith, toString
+}
+```
+
+**Repository Interface** (`repositories/hall_of_fame_repository.dart`):
+```dart
+abstract class HallOfFameRepository {
+  Future<List<HallOfFameEntry>> getAllEntries();
+  Future<List<HallOfFameEntry>> getEntriesByCategory(String category);
+  Future<List<HallOfFameEntry>> getEntriesByMember(String memberId);
+  Future<HallOfFameEntry?> getEntryById(String id);
+}
+```
+
+### Data Layer (`lib/src/features/halloffame/data/`)
+
+**DTO Model** (`models/hall_of_fame_entry_dto.dart`):
+```dart
+class HallOfFameEntryDto {
+  // JSON serialization fields
+  factory HallOfFameEntryDto.fromJson(Map<String, dynamic> json);
+  Map<String, dynamic> toJson();
+  HallOfFameEntry toEntity(); // Converts DTO to domain entity
+  factory HallOfFameEntryDto.fromEntity(HallOfFameEntry entity);
+}
+```
+
+**Data Source** (`sources/hall_of_fame_data_source.dart`):
+```dart
+abstract class HallOfFameDataSource {
+  Future<List<HallOfFameEntryDto>> getAllEntries();
+  // ... other methods
+}
+
+class MockHallOfFameDataSource implements HallOfFameDataSource {
+  // Mock implementation with sample data
+}
+```
+
+**Repository Implementation** (`repositories/hall_of_fame_repository_impl.dart`):
+```dart
+class HallOfFameRepositoryImpl implements HallOfFameRepository {
+  final HallOfFameDataSource _dataSource;
+  
+  @override
+  Future<List<HallOfFameEntry>> getAllEntries() async {
+    final dtos = await _dataSource.getAllEntries();
+    return dtos.map((dto) => dto.toEntity()).toList();
+  }
+  // ... other implementations
+}
+```
+
+### Presentation Layer (`lib/src/features/halloffame/presentation/`)
+
+**State Management** (`notifiers/hall_of_fame_state.dart`):
+```dart
+class HallOfFameState {
+  final List<HallOfFameEntry> entries;
+  final bool isLoading;
+  final String? error;
+  final String selectedCategory;
+  // ... copyWith, computed properties
+}
+```
+
+**Riverpod Notifier** (`notifiers/hall_of_fame_notifier.dart`):
+```dart
+class HallOfFameNotifier extends StateNotifier<HallOfFameState> {
+  final HallOfFameRepository _repository;
+  
+  Future<void> loadEntries() async {
+    state = state.copyWith(isLoading: true, error: null);
+    try {
+      final entries = await _repository.getAllEntries();
+      state = state.copyWith(entries: entries, isLoading: false);
+    } catch (e) {
+      state = state.copyWith(error: 'Failed to load entries: $e', isLoading: false);
+    }
+  }
+}
+```
+
+**Riverpod Providers** (`notifiers/providers/hall_of_fame_providers.dart`):
+```dart
+final hallOfFameDataSourceProvider = Provider<HallOfFameDataSource>((ref) {
+  return MockHallOfFameDataSource();
+});
+
+final hallOfFameRepositoryProvider = Provider<HallOfFameRepository>((ref) {
+  final dataSource = ref.watch(hallOfFameDataSourceProvider);
+  return HallOfFameRepositoryImpl(dataSource);
+});
+
+final hallOfFameNotifierProvider = StateNotifierProvider<HallOfFameNotifier, HallOfFameState>((ref) {
+  final repository = ref.watch(hallOfFameRepositoryProvider);
+  return HallOfFameNotifier(repository);
+});
+```
+
+**UI Components** (`widgets/achievement_card.dart`):
+```dart
+class AchievementCard extends StatelessWidget {
+  final HallOfFameEntry entry;
+  final VoidCallback? onTap;
+  // ... beautiful card UI with category colors, star icons
+}
+```
+
+**Screen** (`screens/hall_of_fame_screen.dart`):
+```dart
+class HallOfFameScreen extends ConsumerStatefulWidget {
+  @override
+  Widget build(BuildContext context) {
+    final state = ref.watch(hallOfFameNotifierProvider);
+    final notifier = ref.read(hallOfFameNotifierProvider.notifier);
+    // ... UI implementation with category filters, pull-to-refresh
+  }
+}
+```
+
+### App Integration (`lib/src/app.dart`)
+
+```dart
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ProviderScope( // Riverpod's dependency injection
+      child: MaterialApp(
+        home: const MainNavigationScreen(),
+      ),
+    );
+  }
+}
+```
+
+### Data Flow Validation
+
+1. **UI Request**: User opens Hall of Fame screen
+2. **State Management**: `HallOfFameNotifier.loadEntries()` is called
+3. **Repository Call**: Notifier calls `HallOfFameRepository.getAllEntries()`
+4. **Data Source**: Repository calls `HallOfFameDataSource.getAllEntries()`
+5. **Data Mapping**: DTOs are converted to domain entities via `toEntity()`
+6. **State Update**: Notifier updates state with new entries
+7. **UI Update**: Screen rebuilds with new data via Riverpod's reactive system
+
+This implementation demonstrates:
+- ✅ Clean separation of concerns across layers
+- ✅ Dependency inversion (domain depends on abstractions)
+- ✅ Testable architecture (mockable data sources)
+- ✅ Modern state management with Riverpod
+- ✅ Reactive UI updates
+- ✅ Proper error handling and loading states
 
 Adding a new feature (step-by-step)
 
@@ -70,7 +254,12 @@ Adding a new feature (step-by-step)
 
 Dependency injection
 
-- This project doesn't enforce a specific DI framework in the template. Use simple constructor injection for small projects. For larger apps, consider `get_it` + `injectable` or Riverpod providers.
+- This project uses **Riverpod** for dependency injection and state management.
+- Providers are defined in `presentation/notifiers/providers/` for each feature.
+- The main app wraps everything in `ProviderScope` for dependency injection.
+- For simple cases, use `Provider<T>` for immutable dependencies.
+- For state management, use `StateNotifierProvider<Notifier, State>`.
+- Alternative: For smaller projects, consider `get_it` + `injectable` or simple constructor injection.
 
 Tests
 
@@ -80,7 +269,10 @@ Notes & conventions
 
 - Keep domain layer free of Flutter imports. Domain should depend only on Dart primitives and domain models.
 - Data layer can depend on packages for HTTP, local storage, etc.
-- Presentation can and should use Flutter widgets and state management of choice (Provider, Riverpod, Bloc, etc.).
+- Presentation layer uses Flutter widgets and Riverpod for state management.
+- Use `ConsumerWidget` or `ConsumerStatefulWidget` for UI components that need to access providers.
+- Use `ref.watch()` for reactive data and `ref.read()` for one-time actions.
+- Keep providers close to the feature they serve (in `presentation/notifiers/providers/`).
 
 ## Shared model example — Member
 
