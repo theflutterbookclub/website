@@ -1,3 +1,4 @@
+///data representing regular hall of fame entry
 class HallOfFameEntry {
   final String id;
   final String memberId;
@@ -45,3 +46,6 @@ class HallOfFameEntry {
   String toString() =>
       'HallOfFameEntry(id: $id, memberName: $memberName, achievement: $achievement, category: $category)';
 }
+
+///best hall fo famer, in the week
+class LeadingHallOfFameEntry {}

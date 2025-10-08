@@ -1,5 +1,6 @@
 import '../../domain/entities/hall_of_fame_entry.dart';
 
+///raw data coming from api (just strings and ints)
 class HallOfFameEntryDto {
   final String id;
   final String memberId;
