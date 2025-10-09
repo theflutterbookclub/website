@@ -45,15 +45,7 @@ A rich content repository for learning and sharing:
 * Comments and engagement features
 6. Sessions (Upcoming Feature) 
 Interactive learning through scheduled events:
-* Upcoming session calendar
-* Past session recordings and materials
-* Session registration and reminders
-* Live streaming integration
-* Q&A and discussion forums
-* Session notes and resources
-* Speaker profiles and bios
- Getting Started
-Prerequisites
+
 * Flutter SDK (latest stable version)
 * Dart SDK
 * Android Studio / VS Code with Flutter extensions
