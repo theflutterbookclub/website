@@ -5,13 +5,11 @@ import 'package:tfbc/src/features/hall_of_fame/domain/repositories/hall_of_fame_
 import 'package:tfbc/src/features/hall_of_fame/presentation/notifiers/hall_of_fame_notifier.dart';
 import 'package:tfbc/src/features/hall_of_fame/presentation/notifiers/hall_of_fame_state.dart';
 
-
-
 final hallOfFameDataSourceProvider = Provider<HallOfFameDataSource>((ref) {
   return MockHallOfFameDataSource();
 });
 
-// Repository provider
+// Repository provider.
 final hallOfFameRepositoryProvider = Provider<HallOfFameRepository>((ref) {
   final dataSource = ref.watch(hallOfFameDataSourceProvider);
   return HallOfFameRepositoryImpl(dataSource);

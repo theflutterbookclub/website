@@ -5,12 +5,14 @@ class HallOfFameState {
   final bool isLoading;
   final String? error;
   final String selectedCategory;
+  final HallOfFameEntry? selectedEntry;
 
   const HallOfFameState({
     this.entries = const [],
     this.isLoading = false,
     this.error,
     this.selectedCategory = 'All',
+    this.selectedEntry,
   });
 
   HallOfFameState copyWith({
@@ -18,12 +20,14 @@ class HallOfFameState {
     bool? isLoading,
     String? error,
     String? selectedCategory,
+    HallOfFameEntry? selectedEntry,
   }) {
     return HallOfFameState(
       entries: entries ?? this.entries,
       isLoading: isLoading ?? this.isLoading,
       error: error,
       selectedCategory: selectedCategory ?? this.selectedCategory,
+      selectedEntry: selectedEntry,
     );
   }
 

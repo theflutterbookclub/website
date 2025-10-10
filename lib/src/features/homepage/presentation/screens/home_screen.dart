@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
             AppButton(
               text: "About Us",
               width: 200,
-              onPressed: () => context.go(AppRoutes.aboutUs),
+              onPressed: () => context.go(AppRoutes.hallOfFame),
             ),
           ],
         ),

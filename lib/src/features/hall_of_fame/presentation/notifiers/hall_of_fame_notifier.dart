@@ -58,4 +58,8 @@ class HallOfFameNotifier extends StateNotifier<HallOfFameState> {
   void selectCategory(String category) {
     state = state.copyWith(selectedCategory: category);
   }
+
+  void selectEntry(HallOfFameEntry? entry) {
+    state = state.copyWith(selectedEntry: entry);
+  }
 }
