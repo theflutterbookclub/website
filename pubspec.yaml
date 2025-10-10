@@ -36,18 +36,12 @@ flutter:
   
 
   fonts:
-    - family: Ransom
+    - family: OriginalSurfer
       fonts:
-        - asset: assets/fonts/ransom.ttf
+        - asset: assets/fonts/OriginalSurfer.ttf
           weight: 700
-    - family: EB_Garamond
+    - family: GoudyBookletter
       fonts:
-        - asset: assets/fonts/EBGaramond-Regular.ttf
+        - asset: assets/fonts/GoudyBookletter1911-Regular.ttf
           weight: 400
-        - asset: assets/fonts/EBGaramond-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/EBGaramond-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/EBGaramond-Bold.ttf
-          weight: 700
   

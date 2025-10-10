@@ -19,13 +19,13 @@ class HomeScreen extends StatelessWidget {
               'Welcome to The Flutter Book Club',
               style: AppTextStyles.bold.copyWith(
                 fontSize: FontSizes.h1(context),
-                fontFamily: "Ransom",
+                fontFamily: "OriginalSurfer",
               ),
             ),
             SizedBox(height: Spacings.lg(context)),
             Text(
               'We are happy to meet you',
-              style: AppTextStyles.medium.copyWith(
+              style: AppTextStyles.regular.copyWith(
                 fontSize: FontSizes.bodyLarge(context),
               ),
             ),
@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
             AppButton(
               text: "About Us",
               width: 200,
-              onPressed: () => context.go(AppRoutes.aboutUs),
+              onPressed: () {},
             ),
           ],
         ),
