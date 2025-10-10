@@ -4,7 +4,7 @@ import 'colors.dart';
 
 class AppTextStyles {
   static TextStyle get bold => TextStyle(
-    fontFamily: "GoudyBookletter",
+    fontFamily: "Lato",
     color: AppColors.dark,
     fontWeight: FontWeight.w700,
     height: 1.5,
@@ -12,7 +12,7 @@ class AppTextStyles {
   );
 
   static TextStyle get semiBold => TextStyle(
-    fontFamily: "GoudyBookletter",
+    fontFamily: "Lato",
     color: AppColors.dark,
     fontWeight: FontWeight.w600,
     height: 1.5,
@@ -20,7 +20,7 @@ class AppTextStyles {
   );
 
   static TextStyle get medium => TextStyle(
-    fontFamily: "GoudyBookletter",
+    fontFamily: "Lato",
     color: AppColors.grey,
     fontWeight: FontWeight.w500,
     height: 1.5,
@@ -28,7 +28,7 @@ class AppTextStyles {
   );
 
   static TextStyle get regular => TextStyle(
-    fontFamily: "GoudyBookletter",
+    fontFamily: "Lato",
     color: AppColors.grey,
     fontWeight: FontWeight.w400,
     height: 1.5,

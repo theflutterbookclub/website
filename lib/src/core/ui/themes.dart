@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 final ThemeData lightTheme = FlexThemeData.light(
-  fontFamily: "EB_Garamond",
+  fontFamily: "Lato",
   useMaterial3: true,
   scheme: FlexScheme.blumineBlue,
   appBarStyle: FlexAppBarStyle.scaffoldBackground,

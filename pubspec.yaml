@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
 
 
+
   flex_color_scheme:
   flutter_animate:
   flutter_riverpod:
@@ -40,8 +41,11 @@ flutter:
       fonts:
         - asset: assets/fonts/OriginalSurfer.ttf
           weight: 700
-    - family: GoudyBookletter
+    - family: Lato
       fonts:
-        - asset: assets/fonts/GoudyBookletter1911-Regular.ttf
+        - asset: assets/fonts/Lato-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Lato-Regular.ttf
           weight: 400
-  
+        - asset: assets/fonts/Lato-Bold.ttf
+          weight: 700
